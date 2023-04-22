@@ -13,6 +13,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [userData, setuserData] = useState([{}])
   const [users, setUsers] = useState([])
+  const [currentDoc, setCurrentDoc] = useState("");
   const usersCollectionRef = collection(db, "users");
 
   useEffect(()=> {

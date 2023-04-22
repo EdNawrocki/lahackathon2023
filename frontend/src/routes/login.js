@@ -6,7 +6,7 @@ import {collection, getDocs, addDoc} from 'firebase/firestore'
 
 import { signInWithGoogle } from '../Firebase';
 
-export default function Login() {
+export default function Login({setCurrentDoc}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const usersCollectionRef = collection(db, "users");
@@ -37,8 +37,13 @@ export default function Login() {
     setPassword('')
   }
 
-  function handleGoogleSignIn() {
-    signInWithGoogle(usersCollectionRef)
+  function handleGoogleSignIn() {  
+    secondFunction(usersCollectionRef)
+  }
+  const secondFunction = async (usersCollectionRef) => {
+    const result = await signInWithGoogle(usersCollectionRef)
+    setCurrentDoc(result)
+    console.log(result);
   }
 
   return (

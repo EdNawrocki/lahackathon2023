@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, getMultiFactorResolver, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirestore } from "@firebase/firestore";
-import {addDoc} from 'firebase/firestore'
+import {addDoc, doc, updateDoc} from 'firebase/firestore'
 
 
 const firebaseConfig = {
@@ -19,29 +19,39 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app)
 
 const provider = new GoogleAuthProvider()
 
-export const signInWithGoogle = (usersCollectionRef) => {
-    signInWithPopup(auth, provider).then(async (result) => {
+export const signInWithGoogle = async (usersCollectionRef) => {
+    const result = await signInWithPopup(auth, provider).then(async (result) => {
         const name = result.user.displayName;
         const email = result.user.email;
         const photo = result.user.photoURL;
         const id = result.user.uid;
+        const userid = auth.currentUser.uid;
 
-        await addDoc(usersCollectionRef, {
+        result = await addDoc(usersCollectionRef, {
             name: name, 
             email: email,
             photo: photo,
             id: id,
+            userid: userid,
             company: ""
+          }).then( async (docRef) => {
+            console.log("User added with ", docRef.id)
+            console.log("User id ", userid)
+            await updateDoc(doc(db, "users", docRef.id), {
+                id: docRef.id
+                 });
+            return docRef.id
           })
+          console.log(result)
+          return result;
 
     }).catch((error) => {
         console.log(error);
     })
+    console.log("Final return")
+    return result;
 }
-
-
-
-export const db = getFirestore(app)
