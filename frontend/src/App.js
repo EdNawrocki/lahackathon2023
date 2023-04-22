@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import SpeechToText from './components/SpeechToText/SpeechToText'
+import QuestionForm from './components/Form/QuestionForm'
+import {Route, Routes} from 'react-router-dom'
 
 function App() {
   const [data, setData] = useState([{}])
@@ -17,24 +20,11 @@ function App() {
 
   return (
     <div>
-      {(typeof data.end === 'undefined') ? (
-        <p>Loading...</p>
-      ): (
-        <p>{data.end}</p>
-      )}
-      <button onClick={async () => {
-        setCount(count + 1);
-        const response = await fetch("/api", {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(count)
-        })
-        if (response.ok){
-          console.log("success")
-        }
-      }}>BUTTON</button>
+
+      <Routes>
+        <Route path="/some" element={<SpeechToText/>}/>
+        <Route path="/question" element={<QuestionForm/>}/>
+      </Routes>
     </div>
   )
 }
