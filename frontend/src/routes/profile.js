@@ -3,38 +3,39 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {db} from '../Firebase'
 import {updateDoc, doc} from 'firebase/firestore'
-import { getAuth } from 'firebase/auth';
+import { getAuth, updateProfile } from 'firebase/auth';
+const auth = getAuth();
 
-export default function Profile() {
+export default function Profile({currentDoc}) {
 const [company, setCompany] = useState("");
-const auth = getAuth()
-const current = auth.currentUser;
-const handleSubmit = async () => {
-    const id = current.id;
-    company = company ? company : current.company;
-    console.log(current.company)
-    console.log(company)
-    const userDoc = doc(db, "users", current.email);
-    const newFields = {company: company};
-    await updateDoc(userDoc, newFields);
+
+
+function handleSubmit() {
+    waitUpdate();   
+    console.log(company);
     setCompany('')
 }
 
+    const waitUpdate =  async () => { 
+        console.log(currentDoc)
+        await updateDoc(doc(db, "users", currentDoc), {
+        company: company
+         });
+    }
+
     return (
         <React.Fragment>
-            <button onClick={() => {console.log(current.uid)}}>Click Me</button>
+            <button onClick={() => {console.log(currentDoc)}}>Click Me</button>
             <h1>Set up Your Profile</h1>
-            <Form onSubmit={handleSubmit}>
             <h2>What Company are you interviewing with?</h2>
             <input placeholder="Answer Here..." onChange={(e) => setCompany(e.target.value)}>
             </input>
             <h2>What is your greatest weakness?</h2>
             <textarea placeholder="Answer Here...">
             </textarea>
-            <Button block size="lg" type="submit">
+            <Button block size="lg" onClick={() => {handleSubmit()}}>
             SUBMIT
             </Button>
-            </Form>
 
         </React.Fragment>
     )

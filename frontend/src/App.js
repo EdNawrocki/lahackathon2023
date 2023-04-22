@@ -11,6 +11,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [userData, setuserData] = useState([{}])
   const [users, setUsers] = useState([])
+  const [currentDoc, setCurrentDoc] = useState("");
   const usersCollectionRef = collection(db, "users");
 
   useEffect(()=> {
@@ -68,8 +69,8 @@ function App() {
       <Link to='/profile'>Set up Profile</Link> 
     <Routes>
       <Route path="/"></Route>
-      <Route path="/login" element={<Login/>}></Route>
-      <Route path="/profile" element={<Profile/>}></Route>
+      <Route path="/login" element={<Login setCurrentDoc={setCurrentDoc}/>}></Route>
+      <Route path="/profile" element={<Profile currentDoc={currentDoc}/>}></Route>
     </Routes>
     </div>
   )
