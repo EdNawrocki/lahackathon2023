@@ -17,11 +17,11 @@ function App() {
 
   return (
     <div>
-      {(typeof data.end === 'undefined') ? (
+      {/* {(typeof data.end === 'undefined') ? (
         <p>Loading...</p>
       ) : (
         <p>{data.end}</p>
-      )}
+      )} */}
       <SpeechToText/>
     </div>
   )

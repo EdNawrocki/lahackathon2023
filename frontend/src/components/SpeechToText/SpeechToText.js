@@ -16,6 +16,7 @@ const SpeechToText = () => {
 
   useEffect(() => {
     handleListen();
+    // eslint-disable-next-line
   }, [isListening]);
 
   const handleListen = () => {
@@ -55,16 +56,17 @@ const SpeechToText = () => {
 
   return (
     <>
-      <h1>Voice Notes</h1>
       <div className="container">
-        <div className="box">
-          <h2>Notes</h2>
+        <div className="question_box">
+          <h2>Question</h2>
           {savedNotes.map((n) => (
             <p key={n}>{n}</p>
           ))}
         </div>
-        <div className="box">
-          <h2>Current Note</h2>
+        <div className="answer_box">
+          <h2>Answer</h2>
+        </div>
+        <div className="controller_box">
           {isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
           <button onClick={handleSaveNote} disabled={!note}>
             Save Note
