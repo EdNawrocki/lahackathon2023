@@ -3,7 +3,8 @@ from flask_cors import CORS
 import openai
 import json
 from flask import request
-
+from firebase import firebase
+firebase = firebase.FirebaseApplication('https://lahacks2023-6ebec-default-rtdb.firebaseio.com/', None)
 app = Flask(__name__)
 CORS(app)
 #need a new APIKEY since I commited this one
@@ -27,16 +28,29 @@ def ChatGPT_conversation(conversation):
 
 @app.route("/api", methods=['POST', 'GET'])
 def members():
+    error = None
+    count = 0
+    count = str(count)
+    result = {"end": count}
+    if request.method == 'POST':
+          return {"end": "hello"}
     conversation = []  
     prompt = "Say Hi"
     conversation.append({'role': 'user', 'content': prompt})
     #conversation = ChatGPT_conversation(conversation)
     #text = conversation[-1]['content'].strip()
-    result = {"end": "TEST"}
+    
     return result
 
 #conversation[-1]['role'].strip().to_json(), 
 
+
+@app.route("/fire", methods=['POST', 'GET'])
+def home():
+  if request.method == 'POST':
+      firebase.post("/users", request.json)
+  result = firebase.get('/users', None)
+  return result
 
 
 if __name__ == "__main__":
