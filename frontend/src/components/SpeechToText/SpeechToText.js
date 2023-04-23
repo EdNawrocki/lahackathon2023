@@ -13,6 +13,7 @@ const SpeechToText = () => {
   const [isListening, setIsListening] = useState(false);
   const [note, setNote] = useState(null);
   const [savedNotes, setSavedNotes] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState("")
 
   useEffect(() => {
     handleListen();
@@ -49,9 +50,21 @@ const SpeechToText = () => {
     };
   };
 
-  const handleSaveNote = () => {
+  const handleSaveNote = async () => {
     setSavedNotes([...savedNotes, note]);
+    setCurrentQuestion(note)
     setNote("");
+    const response = await fetch("/api", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(currentQuestion)
+    })
+    if (response.ok){
+      console.log("success")
+    }
+
   };
 
   return (

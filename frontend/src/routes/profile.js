@@ -17,20 +17,20 @@ const [strength, setStrength] = useState("");
 function handleSubmit() {
     Question(currentDoc, company, "company", setCompany)
     Question(currentDoc, weakness, "weakness", setWeakness)
-    Question(currentDoc, strength, "strength", setStrength)
+    Question(currentDoc, strength, "strength", setStrength) 
 }
 
     return (
         <React.Fragment>
             <h1>Set up Your Profile</h1>
             <h2>What Company are you interviewing with?</h2>
-            <input placeholder="Answer Here..." onChange={(e) => setCompany(e.target.value)}>
+            <input placeholder="Answer Here..." onChange={(e) => setCompany(e.target.value)} value={company}>
             </input>
             <h2>What is your greatest weakness?</h2>
-            <textarea placeholder="Answer Here..." onChange={(e) => setWeakness(e.target.value)}>
+            <textarea placeholder="Answer Here..." onChange={(e) => setWeakness(e.target.value)} value={weakness}>
             </textarea>
             <h2>What is your greatest strength?</h2>
-            <textarea placeholder="Answer Here..." onChange={(e) => setStrength(e.target.value)}>
+            <textarea placeholder="Answer Here..." onChange={(e) => setStrength(e.target.value)} value={strength}>
             </textarea>
             <Button block size="lg" onClick={() => {handleSubmit()}}>
             SUBMIT

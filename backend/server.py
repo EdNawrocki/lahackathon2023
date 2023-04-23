@@ -4,54 +4,68 @@ import openai
 import json
 from flask import request
 from firebase import firebase
-firebase = firebase.FirebaseApplication('https://lahacks2023-6ebec-default-rtdb.firebaseio.com/', None)
+
 app = Flask(__name__)
 CORS(app)
-#need a new APIKEY since I commited this one
-API_KEY = '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'
+API_KEY = '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'
 openai.api_key = API_KEY
+
+
+import firebase_admin
+from firebase_admin import credentials
+
+cred = credentials.Certificate("../lahacks2023-6ebec-f815f989884b.json")
+firebase_admin.initialize_app(cred)
+
 
 model_id = 'gpt-3.5-turbo'
 
 def ChatGPT_conversation(conversation):
+    # Note: Use of CollectionRef stream() is prefered to get()
+    docs = db.collection(u'cities').where(u'capital', u'==', True).stream()
+
+    for doc in docs:
+        print(f'{doc.id} => {doc.to_dict()}')
+    query = [
+        {"role": "system", "content": "You are an interview helper. "},
+        {"role": "user", "content": conversation},
+    ]
     response = openai.ChatCompletion.create(
         model=model_id,
-        messages=conversation
+        messages=query
     )
     # api_usage = response['usage']
     # print('Total token consumed: {0}'.format(api_usage['total_tokens']))
     # stop means complete
     # print(response['choices'][0].finish_reason)
     # print(response['choices'][0].index)
-    conversation.append({'role': response.choices[0].message.role, 'content': response.choices[0].message.content})
+    conversation = response["choices"][0]["message"]
     return conversation
 
 @app.route("/api", methods=['POST', 'GET'])
 def members():
-    error = None
-    count = 0
-    count = str(count)
-    result = {"end": count}
     if request.method == 'POST':
-          return {"end": "hello"}
-    conversation = []  
-    prompt = "Say Hi"
-    conversation.append({'role': 'user', 'content': prompt})
-    #conversation = ChatGPT_conversation(conversation)
-    #text = conversation[-1]['content'].strip()
-    
-    return result
+        data = request.json
+        prompt = data['question']
+        text = ChatGPT_conversation(prompt)
+        text = str(text)
+        text = text.strip('{\n  "content": "')
+        text = text.strip('",\n  "role": "assistant"\n}')
+        #firebase.post("/users", request.json)
+        #result = firebase.get('/users', None)
+        return {"result" : text}
+    return {"GET": "REQUEST"}
 
 #conversation[-1]['role'].strip().to_json(), 
 
-
+"""
 @app.route("/fire", methods=['POST', 'GET'])
 def home():
   if request.method == 'POST':
       firebase.post("/users", request.json)
   result = firebase.get('/users', None)
   return result
-
+"""
 
 if __name__ == "__main__":
     app.run(debug=True)

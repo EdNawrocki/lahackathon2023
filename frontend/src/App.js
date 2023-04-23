@@ -13,6 +13,7 @@ function App() {
   const [userData, setuserData] = useState([{}])
   const [users, setUsers] = useState([])
   const [currentDoc, setCurrentDoc] = useState("");
+  const [response, setResponse] = useState("");
   const usersCollectionRef = collection(db, "users");
 
   useEffect(()=> {
@@ -59,7 +60,23 @@ function App() {
     });
   }
 
-
+const testBackend = async () => {
+  const response = await fetch("/api", {
+    method: 'POST',
+    body: JSON.stringify({
+    question: "How confident are you in your job?",
+    }),
+    headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  }
+  }).then(function(response){ 
+    return response.json()
+  }).then(function(data){
+    console.log(data['result'])
+    const ans = JSON.stringify(data['result'])
+    setResponse(JSON.stringify(data['result']))
+  })
+}
 
   return (
     <div>
@@ -69,6 +86,8 @@ function App() {
            <br/>
       <Link to='/profile'>Set up Profile</Link><br/>
       <Link to='/some'>SpeechToText</Link>
+      <button onClick={testBackend}>TEST BACKEND</button>
+      <h1>{response}</h1>
     <Routes>
       <Route path="/"></Route>
       <Route path="/login" element={<Login setCurrentDoc={setCurrentDoc}/>}></Route>
