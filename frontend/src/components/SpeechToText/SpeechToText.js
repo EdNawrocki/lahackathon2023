@@ -14,6 +14,7 @@ const SpeechToText = () => {
   const [note, setNote] = useState(null);
   const [savedNotes, setSavedNotes] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState("")
+  const [response, setResponse] = useState("");
 
   useEffect(() => {
     handleListen();
@@ -42,42 +43,53 @@ const SpeechToText = () => {
         .map((result) => result[0])
         .map((result) => result.transcript)
         .join("");
-      console.log(transcript);
+      //console.log(transcript);
       setNote(transcript);
+      setCurrentQuestion(transcript);
       mic.onerror = (event) => {
         console.log(event.error);
       };
     };
   };
 
-  const handleSaveNote = async () => {
-    setSavedNotes([...savedNotes, note]);
-    setCurrentQuestion(note)
-    setNote("");
-    const response = await fetch("/api", {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(currentQuestion)
-    })
-    if (response.ok){
-      console.log("success")
-    }
+  const handleSaveNote = () => { 
+    setSavedNotes([note]); 
+    console.log("current Question:")
+    console.log(currentQuestion)
+    setResponse('');
+    GPT();
 
   };
+
+  const GPT = async () => {
+    const response = await fetch("/api", {
+      method: 'POST',
+      body: JSON.stringify({
+      question: currentQuestion,
+      }),
+      headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    }
+    }).then(function(response){ 
+      return response.json()
+    }).then(function(data){
+      console.log(data['result'])
+      const ans = JSON.stringify(data['result'])
+      setResponse(JSON.stringify(data['result']))
+      setCurrentQuestion('');
+    })
+  }
 
   return (
     <>
       <div className="container">
         <div className="question_box">
           <h2>Question</h2>
-          {savedNotes.map((n) => (
-            <p key={n}>{n}</p>
-          ))}
+          <p>{savedNotes.join()}</p>
         </div>
         <div className="answer_box">
           <h2>Answer</h2>
+          <p>{response}</p>
         </div>
         <div className="controller_box">
           {isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}

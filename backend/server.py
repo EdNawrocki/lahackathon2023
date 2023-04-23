@@ -4,28 +4,28 @@ import openai
 import json
 from flask import request
 from firebase import firebase
+import firebase_admin
+from firebase_admin import credentials
 
 app = Flask(__name__)
 CORS(app)
 API_KEY = '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'
 openai.api_key = API_KEY
-
-
-import firebase_admin
-from firebase_admin import credentials
-
+"""
 cred = credentials.Certificate("../lahacks2023-6ebec-f815f989884b.json")
 firebase_admin.initialize_app(cred)
-
-
+db = firestore.client()
+"""
 model_id = 'gpt-3.5-turbo'
 
 def ChatGPT_conversation(conversation):
     # Note: Use of CollectionRef stream() is prefered to get()
+    """
     docs = db.collection(u'cities').where(u'capital', u'==', True).stream()
 
     for doc in docs:
         print(f'{doc.id} => {doc.to_dict()}')
+    """
     query = [
         {"role": "system", "content": "You are an interview helper. "},
         {"role": "user", "content": conversation},

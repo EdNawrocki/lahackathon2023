@@ -35,17 +35,6 @@ function App() {
       }
     )
   }, [])
-
-  useEffect(() => {
-    fetch("/fire").then(
-      res => res.json()
-    ).then(
-      userData => {
-        setuserData(userData)
-        console.log(userData)
-      }
-    )
-  }, [])
   const auth = getAuth()
   const current = auth.currentUser;
 
@@ -87,7 +76,6 @@ const testBackend = async () => {
       <Link to='/profile'>Set up Profile</Link><br/>
       <Link to='/some'>SpeechToText</Link>
       <button onClick={testBackend}>TEST BACKEND</button>
-      <h1>{response}</h1>
     <Routes>
       <Route path="/"></Route>
       <Route path="/login" element={<Login setCurrentDoc={setCurrentDoc}/>}></Route>
