@@ -28,7 +28,7 @@ body {
 .flexWrapperOne {
     background-color: white;
     margin-bottom: 6px;
-    margin-left: 103px;
+    margin-left: 140px;
     border-radius: 50%;
     padding: 44px 10px 45px 20px;
     display: flex;
@@ -48,14 +48,14 @@ body {
     display: flex;
     text-align: center;
     margin-bottom: 30px;
-    margin-left: 150px;
+    margin-left: 185px;
 }
 
 .profileButton {
     background-color: black;
     overflow: hidden;
     border-radius: 15px;
-    padding: 10px 126px;
+    padding: 10px 138px;
     display: flex;
     align-items: center;
 }

@@ -41,6 +41,11 @@ const LandingPage = () => {
       ) : (
         <Link to="/login"></Link>
       )}
+      <ul>
+        <li><Link to="/landingpage">Home</Link></li>
+        <li><Link to="/some">Training</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
+      </ul>
       <div className="frame">
         <div className="flexWrapperOne">
           <img

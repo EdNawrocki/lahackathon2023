@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import "./SpeechToText.css";
 
 
@@ -84,6 +85,11 @@ const SpeechToText = ({currentDoc}) => {
 
   return (
     <>
+      <ul>
+        <li><Link to="/landingpage">Home</Link></li>
+        <li><Link to="/some">Training</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
+      </ul>
       <div className="container">
         <div className="question_box">
           <h2>Question</h2>
