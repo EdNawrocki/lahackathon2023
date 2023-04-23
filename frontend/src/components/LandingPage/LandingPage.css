@@ -1,0 +1,73 @@
+body {
+    display:flex;
+    background: #F5F5F5;
+    justify-content: center;
+    align-items: center;
+    margin:50px auto;
+}
+
+.frame{
+    background-color: white;
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 30px 150px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.flexWrapperOne {
+    background-color: white;
+    margin-bottom: 6px;
+    margin-left: 89px;
+    border-radius: 50%;
+    padding: 44px 10px 43px 14px;
+    display: flex;
+    align-items: center;
+    border: 5px solid black;
+  }
+
+.screenshot20230422At12431 {
+    width: 140px;
+    height: 80px;
+  }
+
+.interviewAi {
+    height: 2px;
+    width: 173px;
+    color: black;
+    display: flex;
+    text-align: center;
+    margin-bottom: 42px;
+    margin-left: 128px;
+}
+
+.signIn {
+    background-color: black;
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 10px 105px;
+    display: flex;
+    align-items: center;
+}
+
+.buttonMessage{
+    color: white;
+}
+
+.googleSignIn {
+    height: 25px;
+    width: 250px;
+    color: white;
+    display: flex;
+    text-align: center;
+}
+  
+/* .vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}  */
+
