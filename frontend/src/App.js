@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import SpeechToText from './components/SpeechToText/SpeechToText'
-import QuestionForm from './components/Form/QuestionForm'
 import {Route, Routes, Link} from 'react-router-dom'
 import Login from "./routes/login"
 import Profile from "./routes/profile"
@@ -75,7 +74,6 @@ function App() {
       <Route path="/login" element={<Login/>}></Route>
       <Route path="/profile" element={<Profile/>}></Route>
       <Route path="/some" element={<SpeechToText/>}/>
-      <Route path="/question" element={<QuestionForm/>}/>
     </Routes>
     </div>
   )
