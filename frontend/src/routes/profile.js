@@ -10,32 +10,27 @@ const auth = getAuth();
 
 export default function Profile({currentDoc}) {
 const [company, setCompany] = useState("");
+const [weakness, setWeakness] = useState("");
+const [strength, setStrength] = useState("");
 
 
 function handleSubmit() {
-    //const data = db.collection('users').doc(currentDoc).get()
-    //const snapshot =  getDocs(data);
     Question(currentDoc, company, "company", setCompany)
-    //waitUpdate();   
-    //console.log(company);
+    Question(currentDoc, weakness, "weakness", setWeakness)
+    Question(currentDoc, strength, "strength", setStrength)
 }
-
-    const waitUpdate =  async () => {
-        console.log(currentDoc)
-        await updateDoc(doc(db, "users", currentDoc), {
-        company: company
-         });
-    }
 
     return (
         <React.Fragment>
-            <button onClick={() => {console.log(currentDoc)}}>Click Me</button>
             <h1>Set up Your Profile</h1>
             <h2>What Company are you interviewing with?</h2>
             <input placeholder="Answer Here..." onChange={(e) => setCompany(e.target.value)}>
             </input>
             <h2>What is your greatest weakness?</h2>
-            <textarea placeholder="Answer Here...">
+            <textarea placeholder="Answer Here..." onChange={(e) => setWeakness(e.target.value)}>
+            </textarea>
+            <h2>What is your greatest strength?</h2>
+            <textarea placeholder="Answer Here..." onChange={(e) => setStrength(e.target.value)}>
             </textarea>
             <Button block size="lg" onClick={() => {handleSubmit()}}>
             SUBMIT
