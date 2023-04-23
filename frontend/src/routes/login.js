@@ -38,10 +38,9 @@ export default function Login({ setCurrentDoc }) {
     secondFunction(usersCollectionRef);
   }
   const secondFunction = async (usersCollectionRef) => {
-    const result = await signInWithGoogle(usersCollectionRef);
-    setCurrentDoc(result);
-    console.log(result);
-  };
+    const result = await signInWithGoogle(usersCollectionRef)
+    setCurrentDoc(result)
+  }
 
 
   return (
