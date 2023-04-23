@@ -92,7 +92,7 @@ const SpeechToText = ({currentDoc}) => {
       </ul>
       <div className="container">
         <div className="question_box">
-          <h2>Question</h2>
+          <h2>User Input</h2>
           <p>{savedNotes.join()}</p>
         </div>
         <div className="answer_box">

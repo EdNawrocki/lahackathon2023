@@ -35,7 +35,7 @@ const LandingPage = () => {
   return (
     <div className="login">
       {current ? (
-        <div className="button">
+        <div className="buttonDiv">
           <button className="button" onClick={signOutUser}>Sign Out</button>
         </div>
       ) : (
