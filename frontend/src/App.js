@@ -30,8 +30,8 @@ function App() {
           path="/login"
           element={<Login setCurrentDoc={setCurrentDoc} />}
         />
-        <Route path="/profile" element={<Profile currentDoc={currentDoc} />} />
-        <Route path="/some" element={<SpeechToText />} />
+        <Route path="/profile" element={<Profile currentDoc={currentDoc} setContext={setProfileContext} />} />
+        <Route path="/some" element={<SpeechToText currentDoc={currentDoc} />} />
         <Route path="/landingpage" element={<LandingPage/>} />
       </Routes>
     </div>
