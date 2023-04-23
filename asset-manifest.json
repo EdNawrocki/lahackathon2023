@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/lahackathon2023/static/css/main.e1a01b61.css",
+    "main.js": "/lahackathon2023/static/js/main.02a2c466.js",
+    "index.html": "/lahackathon2023/index.html",
+    "main.e1a01b61.css.map": "/lahackathon2023/static/css/main.e1a01b61.css.map",
+    "main.02a2c466.js.map": "/lahackathon2023/static/js/main.02a2c466.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e1a01b61.css",
+    "static/js/main.02a2c466.js"
+  ]
+}
