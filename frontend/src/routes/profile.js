@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import {db} from '../Firebase'
 import {updateDoc, doc, collection, query, where, getDocs } from 'firebase/firestore'
 import { getAuth, updateProfile } from 'firebase/auth';
-
+import { useNavigate, Link } from "react-router-dom";
 import {Question} from './question'
 
 const auth = getAuth();
@@ -14,7 +14,9 @@ const [company, setCompany] = useState("");
 const [weakness, setWeakness] = useState("");
 const [strength, setStrength] = useState("");
 const [experience, setExperience] = useState("");
-const [values, setValues] = useState("")
+const [values, setValues] = useState("");
+const navigate = useNavigate();
+const current = auth.currentUser;
 
 const establishProfileContext = async () => {
     console.log(currentDoc)
@@ -60,8 +62,29 @@ const handleSubmit = async () => {
     
 }
 
+const signOutUser = () => {
+  navigate('/login')
+  auth.signOut().then(
+    function () {
+      console.log("Signed Out");
+      localStorage.setItem("name", "");
+      localStorage.setItem("email", "");
+      localStorage.setItem("photo", "");
+    },
+    function (error) {
+      console.error("Sign Out Error", error);
+    },
+  );
+};
     return (
         <React.Fragment>
+            {current ? (
+              <div className="button">
+                <button className="button" onClick={signOutUser}>Sign Out</button>
+              </div>
+            ) : (
+              <Link to="/login"></Link>
+            )}
             <h1>Set up Your Profile</h1>
             <h2>What Company are you interviewing with?</h2>
             <input placeholder="Answer Here..." onChange={(e) => setCompany(e.target.value)} value={company}>
