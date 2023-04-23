@@ -1,6 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import './LandingPage.css'
+import { useNavigate, Link } from "react-router-dom";
+import './LandingPage.css';
+import { getAuth } from "firebase/auth";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -13,8 +14,33 @@ const LandingPage = () => {
     navigate('/some')
   }
 
+  const auth = getAuth();
+  const current = auth.currentUser;
+
+  const signOutUser = () => {
+    navigate('/login')
+    auth.signOut().then(
+      function () {
+        console.log("Signed Out");
+        localStorage.setItem("name", "");
+        localStorage.setItem("email", "");
+        localStorage.setItem("photo", "");
+      },
+      function (error) {
+        console.error("Sign Out Error", error);
+      },
+    );
+  };
+
   return (
     <div className="login">
+      {current ? (
+        <div className="button">
+          <button className="button" onClick={signOutUser}>Sign Out</button>
+        </div>
+      ) : (
+        <Link to="/login"></Link>
+      )}
       <div className="frame">
         <div className="flexWrapperOne">
           <img
@@ -24,11 +50,11 @@ const LandingPage = () => {
           />
         </div>
         <b className="interviewAi">Interview AI</b>
-        <button className="signIn" onClick={navigateToProfile}>
-          <p className="buttonMessage">Prepping for interview</p>
+        <button className="profileButton" onClick={navigateToProfile}>
+          <p className="buttonMessage">Building my profile</p>
         </button>
-        <button className="signIn" onClick={navigateToSTT}>
-          <p className="buttonMessage">I have an interview</p>
+        <button className="prepButton" onClick={navigateToSTT}>
+          <p className="buttonMessage">Preparing for an interview</p>
         </button>
       </div>
     </div>

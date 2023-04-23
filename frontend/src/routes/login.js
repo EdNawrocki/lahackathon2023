@@ -47,14 +47,14 @@ export default function Login({ setCurrentDoc }) {
   return (
     <div className="login">
       <div className="frame">
-        <div className="flexWrapperOne">
+        <div className="flexWrapper">
           <img
             alt=""
             className="screenshot20230422At12431"
             src="https://static.overlay-tech.com/assets/d9ff1fd6-7b75-4e92-9cb7-ff38584e046c.png"
           />
         </div>
-        <b className="interviewAi">Interview AI</b>
+        <b className="interviewAiText">Interview AI</b>
         <button className="signIn" onClick={handleGoogleSignIn}>
           <p className="buttonMessage">Sign In with Google</p>
         </button>

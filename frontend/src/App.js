@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SpeechToText from "./components/SpeechToText/SpeechToText";
-import { Route, Routes, Link, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./routes/login";
 import Profile from "./routes/profile";
 import { db } from "./Firebase";
@@ -62,13 +62,6 @@ function App() {
 
   return (
     <div>
-      {current ? (
-        <div className="body">
-          <button onClick={signOutUser}>Sign Out</button>
-        </div>
-      ) : (
-        <Link to="/login"></Link>
-      )}
       <Routes>
         <Route path="/"></Route>
         <Route
