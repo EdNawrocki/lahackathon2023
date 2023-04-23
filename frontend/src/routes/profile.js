@@ -29,7 +29,6 @@ function handleSubmit() {
 
     return (
         <React.Fragment>
-            <button onClick={() => {console.log(currentDoc)}}>Click Me</button>
             <h1>Set up Your Profile</h1>
             <h2>What Company are you interviewing with?</h2>
             <input placeholder="Answer Here..." onChange={(e) => setCompany(e.target.value)}>
