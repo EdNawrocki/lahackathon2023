@@ -14,7 +14,7 @@ body {
   
   .container {
     background: #F5F5F5;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 30vw 30vw 30vw;
   }
   
   .question_box {
@@ -23,23 +23,18 @@ body {
     margin: auto;
     padding: 20px;
     border-radius: 10px;
-    height: 125px;
-    width: 1400px;
-    left: 20px;
-    top: 60px;
+    height: 10vh;
+    width: 90vw;
     border-radius: 15px;
   }
 
   .answer_box {
     border: 2px solid #000;
     min-height: 20rem;
-    margin: auto;
     padding: 20px;
     border-radius: 10px;
-    height: 650px;
-    width: 1400px;
-    left: 20px;
-    top: 207px;
+    height: 20vh;
+    width: 90vw;
     border-radius: 15px;
   }
 
@@ -49,10 +44,8 @@ body {
     margin: auto;
     padding: 20px;
     border-radius: 10px;
-    height: 50px;
-    width: 1400px;
-    left: 20px;
-    top: 879px;
+    height: 5vh;
+    width: 90vw;
     border-radius: 15px;
   }
   
@@ -66,4 +59,8 @@ body {
     padding: 10px;
     border-radius: 5px;
     background: transparent;
+  }
+
+  p {
+    font-size: 20px
   }

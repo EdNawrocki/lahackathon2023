@@ -51,6 +51,10 @@ body {
     align-items: center;
 }
 
+.signIn:hover{
+    background-color: #666;
+}
+
 .buttonMessage{
     color: white;
 }
@@ -61,6 +65,9 @@ body {
     color: white;
     display: flex;
     text-align: center;
+}
+.googleSignIn:hover {
+    background-color: #666;
 }
   
 /* .vertical-center {

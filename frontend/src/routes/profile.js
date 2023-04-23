@@ -87,19 +87,19 @@ const signOutUser = () => {
             )}
             <h1>Set up Your Profile</h1>
             <h2>What Company are you interviewing with?</h2>
-            <input placeholder="Answer Here..." onChange={(e) => setCompany(e.target.value)} value={company}>
+            <input rows="10" cols="40" placeholder="Answer Here..." onChange={(e) => setCompany(e.target.value)} value={company}>
             </input>
             <h2>What is your greatest weakness?</h2>
-            <textarea placeholder="Answer Here..." onChange={(e) => setWeakness(e.target.value)} value={weakness}>
+            <textarea rows="5" cols="100" placeholder="Answer Here..." onChange={(e) => setWeakness(e.target.value)} value={weakness}>
             </textarea>
             <h2>What is your greatest strength?</h2>
-            <textarea placeholder="Answer Here..." onChange={(e) => setStrength(e.target.value)} value={strength}>
+            <textarea rows="5" cols="100" placeholder="Answer Here..." onChange={(e) => setStrength(e.target.value)} value={strength}>
             </textarea>
             <h2>Please list some accomplishments and experience relevant to the position.</h2>
-            <textarea placeholder="Answer Here..." onChange={(e) => setExperience(e.target.value)} value={experience}>
+            <textarea rows="5" cols="100" placeholder="Answer Here..." onChange={(e) => setExperience(e.target.value)} value={experience}>
             </textarea>
-            <h2>Please paste some company values into this box</h2>
-            <textarea placeholder="Answer Here..." onChange={(e) => setValues(e.target.value)} value={values}>
+            <h2>Please share some company values.</h2>
+            <textarea rows="5" cols="100" placeholder="Answer Here..." onChange={(e) => setValues(e.target.value)} value={values}>
             </textarea>
             <Button block size="lg" onClick={() => {handleSubmit()}}>
             SUBMIT

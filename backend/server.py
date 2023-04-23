@@ -8,10 +8,12 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 import firebase
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
-API_KEY = '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'
+API_KEY = os.getenv('API_KEY')
 openai.api_key = API_KEY
 
 cred = credentials.Certificate("../lahacks2023-6ebec-f815f989884b.json")

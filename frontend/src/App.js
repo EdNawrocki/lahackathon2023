@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SpeechToText from "./components/SpeechToText/SpeechToText";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Link, Navigate } from "react-router-dom";
 import Login from "./routes/login";
 import Profile from "./routes/profile";
 import { db } from "./Firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import LandingPage from "./components/LandingPage/LandingPage";
+import './navbar.css'
 
 function App() {
-  const [data, setData] = useState([{}])
-  const [userData, setuserData] = useState([{}])
-  const [users, setUsers] = useState([])
   const [profileContext, setProfileContext] = useState("");
   const [currentDoc, setCurrentDoc] = useState("");
-  const [response, setResponse] = useState("");
-  const usersCollectionRef = collection(db, "users");
-  const navigate = useNavigate();
 
   const auth = getAuth();
-  const current = auth.currentUser;
-
 
   return (
     <div>
+      <ul>
+        <li><Link to="/landingpage">Home</Link></li>
+        <li><Link to="/some">Training</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to="/login">Login</Link></li>
+      </ul>
       <Routes>
-        <Route path="/"></Route>
+      <Route path="/" element={<Navigate to="/login" />} />
         <Route
           path="/login"
           element={<Login setCurrentDoc={setCurrentDoc} />}
