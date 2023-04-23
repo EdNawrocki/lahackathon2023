@@ -5,7 +5,7 @@ import { signInWithGoogle } from "../Firebase";
 import { useNavigate } from "react-router-dom"
 import "./login.css"
 
-export default function Login({ setCurrentDoc }) {
+export default function Login({ setCurrentDoc, currentDoc }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const usersCollectionRef = collection(db, "users");

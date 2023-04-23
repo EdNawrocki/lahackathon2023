@@ -9,56 +9,18 @@ import { getAuth } from "firebase/auth";
 import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
-  const [data, setData] = useState([{}]);
-  const [count, setCount] = useState(0);
-  const [userData, setuserData] = useState([{}]);
-  const [users, setUsers] = useState([]);
+  const [data, setData] = useState([{}])
+  const [userData, setuserData] = useState([{}])
+  const [users, setUsers] = useState([])
+  const [profileContext, setProfileContext] = useState("");
   const [currentDoc, setCurrentDoc] = useState("");
+  const [response, setResponse] = useState("");
   const usersCollectionRef = collection(db, "users");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollectionRef);
-      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getUsers();
-  }, []);
-
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        console.log(data);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch("/fire")
-      .then((res) => res.json())
-      .then((userData) => {
-        setuserData(userData);
-        console.log(userData);
-      });
-  }, []);
   const auth = getAuth();
   const current = auth.currentUser;
 
-  const signOutUser = () => {
-    navigate('/login')
-    auth.signOut().then(
-      function () {
-        console.log("Signed Out");
-        localStorage.setItem("name", "");
-        localStorage.setItem("email", "");
-        localStorage.setItem("photo", "");
-      },
-      function (error) {
-        console.error("Sign Out Error", error);
-      },
-    );
-  };
 
   return (
     <div>
