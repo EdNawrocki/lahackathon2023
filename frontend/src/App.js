@@ -17,12 +17,6 @@ function App() {
 
   return (
     <div>
-      <ul>
-        <li><Link to="/landingpage">Home</Link></li>
-        <li><Link to="/some">Training</Link></li>
-        <li><Link to="/profile">Profile</Link></li>
-        <li><Link to="/login">Login</Link></li>
-      </ul>
       <Routes>
       <Route path="/" element={<Navigate to="/login" />} />
         <Route

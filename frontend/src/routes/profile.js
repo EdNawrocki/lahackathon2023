@@ -86,6 +86,11 @@ const signOutUser = () => {
             ) : (
               <Link to="/login"></Link>
             )}
+            <ul>
+              <li><Link to="/landingpage">Home</Link></li>
+              <li><Link to="/some">Training</Link></li>
+              <li><Link to="/profile">Profile</Link></li>
+            </ul>
             <h1>Set up Your Profile</h1>
             <h2>What Company are you interviewing with?</h2>
             <input rows="10" cols="40" placeholder="Answer Here..." onChange={(e) => setCompany(e.target.value)} value={company}>
