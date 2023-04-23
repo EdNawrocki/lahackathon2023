@@ -68,7 +68,8 @@ function App() {
       (<div><h1>Signed in as: {current.displayName}</h1><button onClick={signOutUser}>Sign Out</button>  </div>) 
       :<Link to='/login'>Login/Signup</Link> }
            <br/>
-      <Link to='/profile'>Set up Profile</Link> 
+      <Link to='/profile'>Set up Profile</Link><br/>
+      <Link to='/some'>SpeechToText</Link>
     <Routes>
       <Route path="/"></Route>
       <Route path="/login" element={<Login/>}></Route>

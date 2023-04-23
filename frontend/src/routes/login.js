@@ -53,10 +53,10 @@ export default function Login({ setCurrentDoc }) {
             src="https://static.overlay-tech.com/assets/d9ff1fd6-7b75-4e92-9cb7-ff38584e046c.png"
           />
         </div>
-        <p className="interviewAi">Interview AI</p>
-        <div className="signIn">
-          <button onClick={handleGoogleSignIn}>Sign In with Google</button>
-        </div>
+        <b className="interviewAi">Interview AI</b>
+        <button className="signIn" onClick={handleGoogleSignIn}>
+          <p className="buttonMessage">Sign In with Google</p>
+        </button>
       </div>
       <h1>{localStorage.getItem("name")}</h1>
       <img src={localStorage.getItem("photo")}></img>
