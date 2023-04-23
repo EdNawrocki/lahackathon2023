@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {db} from '../Firebase'
-import {updateDoc, doc} from 'firebase/firestore'
+import {updateDoc, doc, collection, query, where, getDocs } from 'firebase/firestore'
 import { getAuth, updateProfile } from 'firebase/auth';
+
+import {Question} from './question'
+
 const auth = getAuth();
 
 export default function Profile({currentDoc}) {
@@ -11,12 +13,14 @@ const [company, setCompany] = useState("");
 
 
 function handleSubmit() {
-    waitUpdate();   
-    console.log(company);
-    setCompany('')
+    //const data = db.collection('users').doc(currentDoc).get()
+    //const snapshot =  getDocs(data);
+    Question(currentDoc, company, "company", setCompany)
+    //waitUpdate();   
+    //console.log(company);
 }
 
-    const waitUpdate =  async () => { 
+    const waitUpdate =  async () => {
         console.log(currentDoc)
         await updateDoc(doc(db, "users", currentDoc), {
         company: company
