@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/lahackathon2023/static/css/main.e1a01b61.css",
-    "main.js": "/lahackathon2023/static/js/main.02a2c466.js",
-    "index.html": "/lahackathon2023/index.html",
-    "main.e1a01b61.css.map": "/lahackathon2023/static/css/main.e1a01b61.css.map",
-    "main.02a2c466.js.map": "/lahackathon2023/static/js/main.02a2c466.js.map"
+    "main.css": "/static/css/main.4ee99909.css",
+    "main.js": "/static/js/main.950de108.js",
+    "index.html": "/index.html",
+    "main.4ee99909.css.map": "/static/css/main.4ee99909.css.map",
+    "main.950de108.js.map": "/static/js/main.950de108.js.map"
   },
   "entrypoints": [
-    "static/css/main.e1a01b61.css",
-    "static/js/main.02a2c466.js"
+    "static/css/main.4ee99909.css",
+    "static/js/main.950de108.js"
   ]
 }
