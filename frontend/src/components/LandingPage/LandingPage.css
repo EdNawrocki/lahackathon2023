@@ -60,6 +60,14 @@ body {
     align-items: center;
 }
 
+.profileButton:hover {
+    background-color: #666;
+}
+
+.prepButton:hover {
+    background-color: #666;
+}
+
 .prepButton {
     background-color: black;
     overflow: hidden;

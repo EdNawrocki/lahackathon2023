@@ -5,6 +5,7 @@ import {updateDoc, doc, collection, query, where, getDocs } from 'firebase/fires
 import { getAuth, updateProfile } from 'firebase/auth';
 import { useNavigate, Link } from "react-router-dom";
 import {Question} from './question'
+import './profile.css'
 
 const auth = getAuth();
 
@@ -79,7 +80,7 @@ const signOutUser = () => {
     return (
         <React.Fragment>
             {current ? (
-              <div className="button">
+              <div className="buttonDiv">
                 <button className="button" onClick={signOutUser}>Sign Out</button>
               </div>
             ) : (
@@ -101,7 +102,7 @@ const signOutUser = () => {
             <h2>Please share some company values.</h2>
             <textarea rows="5" cols="100" placeholder="Answer Here..." onChange={(e) => setValues(e.target.value)} value={values}>
             </textarea>
-            <Button block size="lg" onClick={() => {handleSubmit()}}>
+            <Button className="submit" block size="lg" onClick={() => {handleSubmit()}}>
             SUBMIT
             </Button>
 
