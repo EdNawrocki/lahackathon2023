@@ -71,8 +71,8 @@ function App() {
       <Link to='/some'>SpeechToText</Link>
     <Routes>
       <Route path="/"></Route>
-      <Route path="/login" element={<Login/>}></Route>
-      <Route path="/profile" element={<Profile/>}></Route>
+      <Route path="/login" element={<Login setCurrentDoc={setCurrentDoc}/>}></Route>
+      <Route path="/profile" element={<Profile currentDoc={currentDoc}/>}></Route>
       <Route path="/some" element={<SpeechToText/>}/>
     </Routes>
     </div>
