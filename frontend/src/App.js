@@ -4,37 +4,18 @@ import {Route, Routes, Link} from 'react-router-dom'
 import Login from "./routes/login"
 import Profile from "./routes/profile"
 import {db} from './Firebase'
-import {collection, getDocs} from 'firebase/firestore'
+import {QuerySnapshot, getDocs, collection, query, where} from 'firebase/firestore'
 import { getAuth } from 'firebase/auth';
 
 function App() {
   const [data, setData] = useState([{}])
-  const [count, setCount] = useState(0);
   const [userData, setuserData] = useState([{}])
   const [users, setUsers] = useState([])
   const [currentDoc, setCurrentDoc] = useState("");
   const [response, setResponse] = useState("");
   const usersCollectionRef = collection(db, "users");
+  const [profileContext, setProfileContext] = useState("");
 
-  useEffect(()=> {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollectionRef);
-      setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
-    }
-    getUsers();
-  }, []);
-
-
-  useEffect(() => {
-    fetch("/api").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
-  }, [])
   const auth = getAuth()
   const current = auth.currentUser;
 
@@ -67,6 +48,12 @@ const testBackend = async () => {
   })
 }
 
+function testPrompt() {
+  console.log(profileContext)
+}
+
+
+
   return (
     <div>
       {current ? 
@@ -75,12 +62,12 @@ const testBackend = async () => {
            <br/>
       <Link to='/profile'>Set up Profile</Link><br/>
       <Link to='/some'>SpeechToText</Link>
-      <button onClick={testBackend}>TEST BACKEND</button>
+      <button onClick={() => {testPrompt()}}>TEST BACKEND</button>
     <Routes>
       <Route path="/"></Route>
-      <Route path="/login" element={<Login setCurrentDoc={setCurrentDoc}/>}></Route>
-      <Route path="/profile" element={<Profile currentDoc={currentDoc}/>}></Route>
-      <Route path="/some" element={<SpeechToText/>}/>
+      <Route path="/login" element={<Login setCurrentDoc={setCurrentDoc} currentDoc={currentDoc}/>}></Route>
+      <Route path="/profile" element={<Profile currentDoc={currentDoc} setContext={(profileContext) => {setProfileContext(profileContext)}}/>}></Route>
+      <Route path="/some" element={<SpeechToText currentDoc={currentDoc}/>}/>
     </Routes>
     </div>
   )

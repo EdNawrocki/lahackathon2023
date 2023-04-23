@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SpeechToText.css";
 
+
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const mic = new SpeechRecognition();
@@ -9,7 +10,7 @@ mic.continous = true;
 mic.interimResults = true;
 mic.lang = "en-US";
 
-const SpeechToText = () => {
+const SpeechToText = ({currentDoc}) => {
   const [isListening, setIsListening] = useState(false);
   const [note, setNote] = useState(null);
   const [savedNotes, setSavedNotes] = useState([]);
@@ -66,6 +67,7 @@ const SpeechToText = () => {
       method: 'POST',
       body: JSON.stringify({
       question: currentQuestion,
+      context: localStorage.getItem('prompt'),
       }),
       headers: {
       'Content-type': 'application/json; charset=UTF-8',

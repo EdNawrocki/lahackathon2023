@@ -6,19 +6,21 @@ from flask import request
 from firebase import firebase
 import firebase_admin
 from firebase_admin import credentials
+from firebase_admin import firestore
+import firebase
 
 app = Flask(__name__)
 CORS(app)
 API_KEY = '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'
 openai.api_key = API_KEY
-"""
+
 cred = credentials.Certificate("../lahacks2023-6ebec-f815f989884b.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-"""
+
 model_id = 'gpt-3.5-turbo'
 
-def ChatGPT_conversation(conversation):
+def ChatGPT_conversation(conversation, context):
     # Note: Use of CollectionRef stream() is prefered to get()
     """
     docs = db.collection(u'cities').where(u'capital', u'==', True).stream()
@@ -27,7 +29,7 @@ def ChatGPT_conversation(conversation):
         print(f'{doc.id} => {doc.to_dict()}')
     """
     query = [
-        {"role": "system", "content": "You are an interview helper. "},
+        {"role": "system", "content": context},
         {"role": "user", "content": conversation},
     ]
     response = openai.ChatCompletion.create(
@@ -47,7 +49,8 @@ def members():
     if request.method == 'POST':
         data = request.json
         prompt = data['question']
-        text = ChatGPT_conversation(prompt)
+        context = data['context']
+        text = ChatGPT_conversation(prompt, context)
         text = str(text)
         text = text.strip('{\n  "content": "')
         text = text.strip('",\n  "role": "assistant"\n}')
